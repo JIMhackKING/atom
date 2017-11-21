@@ -1,18 +1,16 @@
-/** @babel */
-
-import path from 'path'
-import fs from 'fs'
-import {TextEditor, TextBuffer} from 'atom'
+const path = require('path')
+const fs = require('fs')
+const {TextEditor, TextBuffer} = require('atom')
 
 const SIZES_IN_KB = [
   512,
   1024,
-  2048
+  // 2048
 ]
 const REPEATED_TEXT = fs.readFileSync(path.join(__dirname, '..', 'spec', 'fixtures', 'sample.js'), 'utf8').replace(/\n/g, '')
 const TEXT = REPEATED_TEXT.repeat(Math.ceil(SIZES_IN_KB[SIZES_IN_KB.length - 1] * 1024 / REPEATED_TEXT.length))
 
-export default async function ({test}) {
+module.exports = async ({test}) => {
   const data = []
 
   const workspaceElement = atom.workspace.getElement()
